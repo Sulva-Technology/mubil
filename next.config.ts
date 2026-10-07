@@ -9,9 +9,13 @@ const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR ?? ".next",
   images: {
     formats: ["image/avif", "image/webp"],
-    remotePatterns: supabaseHost
-      ? [{ protocol: "https", hostname: supabaseHost, pathname: "/storage/v1/object/public/**" }]
-      : [],
+    remotePatterns: [
+      // Demo photography. Remove once real images are uploaded.
+      { protocol: "https", hostname: "images.unsplash.com" },
+      ...(supabaseHost
+        ? [{ protocol: "https" as const, hostname: supabaseHost, pathname: "/storage/v1/object/public/**" }]
+        : []),
+    ],
   },
 };
 

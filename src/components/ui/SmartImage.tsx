@@ -9,7 +9,10 @@ const BLUR_DATA_URL =
   );
 
 type SmartImageProps = Omit<ImageProps, "fill" | "width" | "height" | "placeholder"> & {
-  /** CSS aspect ratio, e.g. "16/9", "4/5", "1/1". Locks layout to avoid shift. */
+  /**
+   * CSS aspect ratio, e.g. "16/9", "4/5", "1/1". Locks layout to avoid shift.
+   * Pass "none" to size the wrapper with classes instead (responsive ratios).
+   */
   ratio?: string;
   rounded?: "none" | "chip" | "card" | "panel";
   wrapperClassName?: string;
@@ -38,7 +41,7 @@ export function SmartImage({
   return (
     <div
       className={cn("relative overflow-hidden bg-ice", radius[rounded], wrapperClassName)}
-      style={{ aspectRatio: ratio }}
+      style={ratio === "none" ? undefined : { aspectRatio: ratio }}
     >
       <Image
         src={src}

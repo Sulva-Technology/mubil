@@ -11,8 +11,13 @@ await mkdir("screenshots", { recursive: true });
 const browser = await chromium.launch();
 for (const width of widths) {
   const page = await browser.newPage({ viewport: { width, height: 800 }, reducedMotion: "reduce" });
+  page.on("console", (msg) => {
+    if (msg.type() === "error" || msg.type() === "warning") console.warn(`[${width}] console.${msg.type()}: ${msg.text().slice(0, 300)}`);
+  });
+  page.on("pageerror", (err) => console.warn(`[${width}] pageerror: ${err.message.slice(0, 300)}`));
   for (const route of routes) {
-    await page.goto(base + route, { waitUntil: "networkidle" });
+    await page.goto(base + route, { waitUntil: "load", timeout: 120_000 });
+    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
     // Scroll through so lazy images and in-view reveals load before capture.
     await page.evaluate(async () => {
       for (let y = 0; y < document.body.scrollHeight; y += 400) {
@@ -21,7 +26,7 @@ for (const width of widths) {
       }
       window.scrollTo(0, 0);
     });
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
     const name = route === "/" ? "home" : route.slice(1).replaceAll("/", "-");
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     if (overflow > 0) console.warn(`${route} @${width}: horizontal overflow ${overflow}px`);
