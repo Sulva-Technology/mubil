@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { Download, Eye, Heart, Target } from "lucide-react";
 import { about } from "@/content";
 import { AmbientBackground } from "@/components/ui/AmbientBackground";

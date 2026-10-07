@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CalendarDays, CalendarPlus, ChevronRight, Clock, MapPin, Navigation } from "lucide-react";

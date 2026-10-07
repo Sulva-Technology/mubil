@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { CalendarX2, Newspaper } from "lucide-react";
 import { home } from "@/content";
 import { getUpcomingEvents } from "@/lib/data/events";

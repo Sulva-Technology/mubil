@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import Link from "next/link";
 import type { PostSummary } from "@/lib/data/posts";
 import { formatDate } from "@/lib/format";
@@ -39,7 +39,7 @@ export function PostCard({
         className,
       )}
     >
-      <div className={cn("relative aspect-[3/2] overflow-hidden bg-ice", horizontal && "lg:aspect-auto lg:w-[44%] lg:shrink-0")}>
+      <div className={cn("relative aspect-[3/2] overflow-hidden bg-ice", horizontal && "lg:aspect-auto lg:min-h-[180px] lg:w-[44%] lg:shrink-0")}>
         <Image
           src={post.cover_image_url ?? FALLBACK}
           alt=""

@@ -1,4 +1,5 @@
-import Image, { type ImageProps } from "next/image";
+import Image from "@/components/ui/Img";
+import type { ImageProps } from "next/image";
 import { cn } from "@/lib/cn";
 
 /** Soft brand-tinted blur shown while the real image loads. */

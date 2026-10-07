@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import type { ReactNode } from "react";
 import { CalendarX2 } from "lucide-react";
 import { AmbientBackground } from "@/components/ui/AmbientBackground";

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useCallback, useState } from "react";
 import { Modal } from "@/components/ui/Modal";
 
