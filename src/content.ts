@@ -341,7 +341,8 @@ export type GalleryItem = { src: string; alt: string; caption: string; album: st
 
 export const galleryAlbums = ["Classrooms", "Communities", "Health days"] as const;
 
-export const gallery: GalleryItem[] = [
+// Demo images are cropped to each item's ratio so the masonry never shifts.
+export const gallery: GalleryItem[] = ([
   { src: demoPhoto("1632215861513-130b66fe97f4", 1400), alt: "A teacher in front of young pupils", caption: "Morning lesson, Ikorodu", album: "Classrooms", width: 3, height: 2 },
   { src: demoPhoto("1744809495173-217ca4faa8bc", 1400), alt: "A student drawing with a ruler", caption: "Geometry practice, Ifo", album: "Classrooms", width: 2, height: 3 },
   { src: demoPhoto("1770843093640-c44ae557928b", 1400), alt: "Children in a classroom", caption: "Primary 3 class, Ibadan", album: "Classrooms", width: 3, height: 2 },
@@ -354,7 +355,10 @@ export const gallery: GalleryItem[] = [
   { src: demoPhoto("1781263378223-1e09658a7567", 1400), alt: "A man with children and women", caption: "Volunteers and families", album: "Health days", width: 3, height: 2 },
   { src: demoPhoto("1473594659356-a404044aa2c2", 1400), alt: "A baby on a mother's back", caption: "Maternal health talk", album: "Health days", width: 2, height: 3 },
   { src: demoPhoto("1560220604-1985ebfe28b1", 1400), alt: "Volunteers in yellow shirts", caption: "Our volunteer team", album: "Health days", width: 3, height: 2 },
-];
+] satisfies GalleryItem[]).map((item) => ({
+  ...item,
+  src: `${item.src}&h=${Math.round((1400 * item.height) / item.width)}`,
+}));
 
 /* ---------------------------------------------------------------------------
    Inner page headers
