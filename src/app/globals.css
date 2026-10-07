@@ -1,26 +1,303 @@
 @import "tailwindcss";
 
+/* -------------------------------------------------------------------------
+   Brand tokens. Every colour in the app comes from here so the brand can be
+   swapped by editing this block (and CLAUDE.md).
+   ------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --ink: #0b1b33;
+  --ink-2: #5b6b82;
+  --line: rgba(11, 27, 51, 0.08);
+  --brand: #1f5eff;
+  --brand-deep: #0a2a6b;
+  --sky: #6fb8ff;
+  --aqua: #19c3d9;
+  --ice: #e6f0ff;
+  --night: #050b18;
+  --success: #12b76a;
+  --warning: #f5a524;
+  --error: #e5484d;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
+/* Tailwind theme: drop the default palette so only brand tokens exist. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-sky: var(--sky);
+  --color-aqua: var(--aqua);
+  --color-ice: var(--ice);
+  --color-night: var(--night);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid type scale: min at 360px viewport, max at 1440px */
+  --text-hero: clamp(3.5rem, 2.333rem + 5.185vw, 7rem);
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.035em;
+  --text-h1: clamp(2.5rem, 1.833rem + 2.963vw, 4.5rem);
+  --text-h1--line-height: 1.04;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h2: clamp(2rem, 1.667rem + 1.481vw, 3rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h3: clamp(1.375rem, 1.25rem + 0.556vw, 1.75rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.02em;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.08em;
+
+  --radius-chip: 12px;
+  --radius-card: 20px;
+  --radius-panel: 28px;
+
+  --shadow-card: 0 1px 2px rgba(10, 42, 107, 0.04), 0 8px 24px rgba(10, 42, 107, 0.06);
+  --shadow-lift: 0 2px 4px rgba(10, 42, 107, 0.05), 0 20px 48px rgba(10, 42, 107, 0.14);
+  --shadow-glow: 0 8px 28px color-mix(in srgb, var(--brand) 40%, transparent);
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* -------------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--brand) 22%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* -------------------------------------------------------------------------
+   Layout utilities
+   ------------------------------------------------------------------------- */
+@utility container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 20px;
+
+  @media (width >= 48rem) {
+    padding-inline: 32px;
+  }
+}
+
+@utility section-y {
+  /* 64px at 360px, ~96px tablet, 120-160px desktop */
+  padding-block: clamp(4rem, 2.5rem + 6vw, 10rem);
+}
+
+@utility measure {
+  max-width: 65ch;
+}
+
+/* -------------------------------------------------------------------------
+   Liquid glass. Use only on floating layers.
+   ------------------------------------------------------------------------- */
+@layer components {
+  .glass {
+    position: relative;
+    isolation: isolate;
+    background: rgba(255, 255, 255, 0.55);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 8px 32px rgba(10, 42, 107, 0.1);
+  }
+
+  /* 3% noise to prevent banding in the blur */
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-image: var(--noise);
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  .glass-subtle {
+    background: rgba(255, 255, 255, 0.38);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.74);
+    -webkit-backdrop-filter: blur(32px) saturate(190%);
+    backdrop-filter: blur(32px) saturate(190%);
+    border-color: rgba(255, 255, 255, 0.75);
+  }
+
+  .glass-dark {
+    background: rgba(10, 26, 60, 0.5);
+    border-color: rgba(111, 184, 255, 0.18);
+    box-shadow:
+      inset 0 1px 0 rgba(111, 184, 255, 0.14),
+      0 8px 32px rgba(0, 0, 0, 0.35);
+    color: var(--surface);
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass,
+    .glass-subtle,
+    .glass-strong {
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .glass-dark {
+      background: rgba(10, 26, 60, 0.94);
+    }
+  }
+
+  /* Forced fallback, used by /styleguide to preview the no-blur state */
+  .glass-fallback,
+  .glass-fallback.glass-subtle,
+  .glass-fallback.glass-strong {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .glass-fallback.glass-dark {
+    background: rgba(10, 26, 60, 0.94);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Ambient background blobs
+   ------------------------------------------------------------------------- */
+@layer components {
+  .ambient {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ambient-blob {
+    position: absolute;
+    border-radius: 9999px;
+    background: radial-gradient(closest-side, var(--blob-color), transparent);
+    will-change: transform;
+  }
+
+  @media (width >= 64rem) {
+    .ambient-blob {
+      filter: blur(120px);
+      background: var(--blob-color);
+    }
+  }
+
+  @media (width >= 64rem) and (prefers-reduced-motion: no-preference) {
+    .ambient-blob {
+      animation: drift var(--blob-duration, 28s) var(--ease-soft) infinite alternate;
+    }
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(var(--blob-dx, 6%), var(--blob-dy, -4%), 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(calc(var(--blob-dx, 6%) * -0.6), calc(var(--blob-dy, -4%) * -1), 0) scale(0.96);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
