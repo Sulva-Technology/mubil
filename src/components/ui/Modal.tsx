@@ -28,6 +28,12 @@ export function Modal({ open, onClose, title, hideTitle = false, children, class
   const panelRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const mounted = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  // Read onClose through a ref so a new callback each render doesn't re-run the
+  // open effect and yank focus back to the first control.
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
     if (!open) return;
@@ -43,7 +49,7 @@ export function Modal({ open, onClose, title, hideTitle = false, children, class
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         event.preventDefault();
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (event.key !== "Tab" || !panelRef.current) return;
@@ -67,7 +73,7 @@ export function Modal({ open, onClose, title, hideTitle = false, children, class
       document.body.style.overflow = overflow;
       previouslyFocused?.focus();
     };
-  }, [open, onClose]);
+  }, [open]);
 
   if (!mounted) return null;
 

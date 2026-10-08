@@ -154,16 +154,25 @@ export function SidePanel({
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const mounted = useSyncExternalStore(noop, () => true, () => false);
+  // Parents pass a fresh onClose every render; reading it through a ref keeps the
+  // open effect from re-running (and stealing focus) on every keystroke.
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
     if (!open) return;
     const previouslyFocused = document.activeElement as HTMLElement | null;
     const { overflow } = document.body.style;
     document.body.style.overflow = "hidden";
-    const frame = requestAnimationFrame(() => panelRef.current?.querySelector<HTMLElement>("input, textarea, button")?.focus());
+    const frame = requestAnimationFrame(() => {
+      const panel = panelRef.current;
+      (panel?.querySelector<HTMLElement>("input, textarea") ?? panel?.querySelector<HTMLElement>("button"))?.focus();
+    });
     const onKey = (e: KeyboardEvent) => {
       // Ignore Escape while a dialog (like a delete confirmation) is stacked on top.
-      if (e.key === "Escape" && document.querySelectorAll("[role=dialog][aria-modal=true]").length <= 1) onClose();
+      if (e.key === "Escape" && document.querySelectorAll("[role=dialog][aria-modal=true]").length <= 1) onCloseRef.current();
     };
     document.addEventListener("keydown", onKey);
     return () => {
@@ -172,7 +181,7 @@ export function SidePanel({
       document.body.style.overflow = overflow;
       previouslyFocused?.focus();
     };
-  }, [open, onClose]);
+  }, [open]);
 
   if (!mounted) return null;
 
