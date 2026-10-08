@@ -14,7 +14,7 @@ export function Eyebrow({
     <p
       className={cn(
         "text-eyebrow font-semibold uppercase",
-        tone === "dark" ? "text-aqua" : "text-brand",
+        tone === "dark" ? "text-aqua" : "text-brand-text",
         className,
       )}
     >

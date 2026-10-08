@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { Info, Loader2, X } from "lucide-react";
 import type { PublishStatus } from "@/types/database";
 import { cn } from "@/lib/cn";
@@ -86,7 +86,7 @@ export function FormField({
       {children}
       {hint && !error && (
         <p className="mt-1.5 flex gap-1.5 text-[0.8125rem] leading-snug text-ink-2">
-          <Info aria-hidden className="mt-0.5 size-3.5 shrink-0 text-brand" />
+          <Info aria-hidden className="mt-0.5 size-3.5 shrink-0 text-brand-text" />
           <span>{hint}</span>
         </p>
       )}
@@ -180,7 +180,7 @@ export function SidePanel({
     <AnimatePresence>
       {open && (
         <div className="fixed inset-0 z-[80]">
-          <motion.div
+          <m.div
             aria-hidden
             className="absolute inset-0 bg-night/35"
             initial={{ opacity: 0 }}
@@ -189,7 +189,7 @@ export function SidePanel({
             transition={{ duration: 0.35, ease: EASE }}
             onClick={onClose}
           />
-          <motion.div
+          <m.div
             ref={panelRef}
             role="dialog"
             aria-modal="true"
@@ -213,7 +213,7 @@ export function SidePanel({
             </div>
             <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-7">{children}</div>
             {footer && <div className="border-t border-line px-5 py-4 sm:px-7">{footer}</div>}
-          </motion.div>
+          </m.div>
         </div>
       )}
     </AnimatePresence>,

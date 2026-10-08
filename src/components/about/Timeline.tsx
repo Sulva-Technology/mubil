@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { m, useScroll, useSpring } from "framer-motion";
 
 type Milestone = { year: string; text: string };
 
@@ -16,7 +16,7 @@ export function Timeline({ items }: { items: ReadonlyArray<Milestone> }) {
   return (
     <ol ref={ref} className="relative ml-2 md:ml-0">
       <span aria-hidden className="absolute bottom-2 left-[7px] top-2 w-px bg-line md:left-1/2" />
-      <motion.span
+      <m.span
         aria-hidden
         data-reveal
         style={{ scaleY }}
@@ -37,7 +37,7 @@ export function Timeline({ items }: { items: ReadonlyArray<Milestone> }) {
               (i % 2 === 0 ? "md:left-auto md:right-[-7.5px]" : "md:left-[-7.5px]")
             }
           />
-          <span className="font-display text-h3 font-semibold text-brand">{item.year}</span>
+          <span className="font-display text-h3 font-semibold text-brand-text">{item.year}</span>
           <span className="text-ink-2 md:text-body">{item.text}</span>
         </li>
       ))}

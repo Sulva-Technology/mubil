@@ -35,7 +35,7 @@ export function TeamGrid({ members }: { members: ReadonlyArray<Member> }) {
                 {member.name}
               </span>
               <span className="mt-0.5 block text-small text-ink-2">{member.role}</span>
-              <span className="mt-2 inline-block text-small font-medium text-brand">Read bio</span>
+              <span className="mt-2 inline-block text-small font-medium text-brand-text">Read bio</span>
             </button>
           </li>
         ))}
@@ -48,7 +48,7 @@ export function TeamGrid({ members }: { members: ReadonlyArray<Member> }) {
               <Image src={active.image} alt="" fill sizes="96px" className="object-cover" />
             </div>
             <div>
-              <p className="text-small font-medium text-brand">{active.role}</p>
+              <p className="text-small font-medium text-brand-text">{active.role}</p>
               <p className="mt-3 text-ink-2">{active.bio}</p>
             </div>
           </div>

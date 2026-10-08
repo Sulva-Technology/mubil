@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+// No eval-based JIT: our Content Security Policy blocks `new Function`.
+z.config({ jitless: true });
+
 const slug = z
   .string()
   .trim()

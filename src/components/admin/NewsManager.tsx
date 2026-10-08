@@ -143,7 +143,7 @@ export function NewsManager({ posts, defaultAuthor }: { posts: PostRow[]; defaul
                     {post.cover_image_url && <Image src={post.cover_image_url} alt="" fill sizes="64px" className="object-cover" />}
                   </div>
                   <div className="min-w-0">
-                    <button type="button" onClick={() => setParam("edit", post.id)} className="block max-w-full truncate text-left font-medium hover:text-brand">
+                    <button type="button" onClick={() => setParam("edit", post.id)} className="block max-w-full truncate text-left font-medium hover:text-brand-text">
                       {post.title}
                     </button>
                     <p className="truncate text-[0.8125rem] text-ink-2">

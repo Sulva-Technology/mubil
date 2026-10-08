@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks } from "@/content";
 import { cn } from "@/lib/cn";
@@ -106,7 +106,7 @@ export function Navbar() {
                     )}
                   >
                     {active && (
-                      <motion.span
+                      <m.span
                         layoutId="nav-active"
                         className="absolute inset-0 rounded-full border border-white/80 bg-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_2px_10px_rgba(10,42,107,0.08)]"
                         transition={reduce ? { duration: 0 } : { duration: 0.55, ease: EASE }}
@@ -143,7 +143,7 @@ export function Navbar() {
       <AnimatePresence>
         {open && (
           <div className="fixed inset-0 z-[60] lg:hidden">
-            <motion.div
+            <m.div
               aria-hidden
               className="absolute inset-0 bg-night/40"
               initial={{ opacity: 0 }}
@@ -152,7 +152,7 @@ export function Navbar() {
               transition={{ duration: 0.4, ease: EASE }}
               onClick={close}
             />
-            <motion.div
+            <m.div
               id="mobile-menu"
               ref={sheetRef}
               role="dialog"
@@ -203,7 +203,7 @@ export function Navbar() {
               >
                 Get involved
               </Link>
-            </motion.div>
+            </m.div>
           </div>
         )}
       </AnimatePresence>

@@ -88,17 +88,17 @@ export default async function ArticlePage({ params }: Props) {
       <article className="pb-20 pt-32 md:pt-40">
         <header className="container-page">
           <div className="mx-auto max-w-[680px]">
-            <Link href="/news" className="inline-flex items-center gap-1 rounded text-small font-medium text-brand hover:text-brand-deep">
+            <Link href="/news" className="inline-flex items-center gap-1 rounded text-small font-medium text-brand-text hover:text-brand-deep">
               <ChevronLeft aria-hidden className="size-4" />
               All news
             </Link>
             {post.category && (
-              <p className="mt-8 text-eyebrow font-semibold uppercase text-brand">{post.category}</p>
+              <p className="mt-8 text-eyebrow font-semibold uppercase text-brand-text">{post.category}</p>
             )}
             <h1 className="mt-4 text-h1 font-semibold">{post.title}</h1>
             {post.excerpt && <p className="mt-5 text-[1.1875rem] leading-relaxed text-ink-2 md:text-[1.375rem]">{post.excerpt}</p>}
             <div className="mt-8 flex items-center gap-4 border-y border-line py-4 text-small">
-              <span aria-hidden className="grid size-10 place-items-center rounded-full bg-ice font-display font-semibold text-brand">
+              <span aria-hidden className="grid size-10 place-items-center rounded-full bg-ice font-display font-semibold text-brand-text">
                 {(post.author ?? site.shortName).charAt(0)}
               </span>
               <div>

@@ -37,13 +37,13 @@ export default function ContactPage() {
             <ul className="mt-10 space-y-5">
               {rows.map(({ icon: Icon, label, value, href }) => (
                 <li key={label} className="flex items-start gap-4">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-brand shadow-card">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-brand-text shadow-card">
                     <Icon aria-hidden className="size-5" strokeWidth={1.75} />
                   </span>
                   <div>
                     <p className="text-small text-ink-2">{label}</p>
                     {href ? (
-                      <a href={href} className="rounded font-medium hover:text-brand" {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                      <a href={href} className="rounded font-medium hover:text-brand-text" {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                         {value}
                       </a>
                     ) : (
@@ -62,7 +62,7 @@ export default function ContactPage() {
                     aria-label={s.label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="grid size-11 place-items-center rounded-full border border-line bg-white text-ink-2 transition-[color,transform] duration-500 ease-soft hover:-translate-y-0.5 hover:text-brand"
+                    className="grid size-11 place-items-center rounded-full border border-line bg-white text-ink-2 transition-[color,transform] duration-500 ease-soft hover:-translate-y-0.5 hover:text-brand-text"
                   >
                     <SocialIcon network={s.network} className="size-5" />
                   </a>
@@ -89,7 +89,7 @@ export default function ContactPage() {
             />
             <Glass variant="strong" className="absolute bottom-4 left-4 right-4 rounded-card p-5 sm:right-auto sm:max-w-sm md:bottom-6 md:left-6">
               <p className="flex items-center gap-2 font-medium">
-                <MapPin aria-hidden className="size-4 text-brand" strokeWidth={2} />
+                <MapPin aria-hidden className="size-4 text-brand-text" strokeWidth={2} />
                 Visit our office
               </p>
               <p className="mt-1 text-small text-ink">{contact.address}</p>

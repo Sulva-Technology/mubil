@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { preconnect } from "react-dom";
 import { Inter, Inter_Tight } from "next/font/google";
 import { site } from "@/content";
 import { ToastProvider } from "@/components/ui/Toast";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -50,10 +52,15 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  // Demo photos come from Unsplash's CDN; warm the connection for the hero image.
+  preconnect("https://images.unsplash.com");
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL) preconnect(process.env.NEXT_PUBLIC_SUPABASE_URL);
   return (
     <html lang="en" className={`${inter.variable} ${interTight.variable}`}>
       <body>
-        <ToastProvider>{children}</ToastProvider>
+        <MotionProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </MotionProvider>
         <SmoothScroll />
       </body>
     </html>

@@ -139,7 +139,7 @@ export function HelpCenter() {
 
       <section className="mt-12 flex flex-col items-start gap-4 rounded-card bg-ice p-6 sm:flex-row sm:items-center sm:justify-between md:p-8">
         <div className="flex items-start gap-4">
-          <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-brand shadow-card">
+          <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-brand-text shadow-card">
             <LifeBuoy aria-hidden className="size-5" strokeWidth={1.75} />
           </span>
           <div>

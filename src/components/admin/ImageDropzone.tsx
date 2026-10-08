@@ -67,7 +67,7 @@ export function ImageDropzone({ id, folder, value, onChange, invalid }: Props) {
             <Image src={value} alt="Cover preview" fill sizes="600px" className="object-cover" />
             {busy && (
               <div className="absolute inset-0 grid place-items-center bg-white/70">
-                <Loader2 aria-hidden className="size-6 animate-spin text-brand" />
+                <Loader2 aria-hidden className="size-6 animate-spin text-brand-text" />
               </div>
             )}
           </div>
@@ -98,12 +98,12 @@ export function ImageDropzone({ id, folder, value, onChange, invalid }: Props) {
         >
           {busy ? (
             <>
-              <Loader2 aria-hidden className="size-6 animate-spin text-brand" />
+              <Loader2 aria-hidden className="size-6 animate-spin text-brand-text" />
               <span className="text-small text-ink-2">Compressing and uploading...</span>
             </>
           ) : (
             <>
-              <span className="grid size-12 place-items-center rounded-full bg-ice text-brand">
+              <span className="grid size-12 place-items-center rounded-full bg-ice text-brand-text">
                 <ImagePlus aria-hidden className="size-6" strokeWidth={1.75} />
               </span>
               <span className="font-medium">Drop a photo here, or click to choose</span>

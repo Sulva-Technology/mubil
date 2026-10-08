@@ -162,7 +162,7 @@ export function InboxView({ messages }: { messages: MessageRow[] }) {
         {open && (
           <article>
             <div className="flex items-center gap-3">
-              <span aria-hidden className="grid size-11 place-items-center rounded-full bg-ice font-display font-semibold text-brand">
+              <span aria-hidden className="grid size-11 place-items-center rounded-full bg-ice font-display font-semibold text-brand-text">
                 {open.name.charAt(0)}
               </span>
               <div className="min-w-0">
@@ -179,7 +179,7 @@ export function InboxView({ messages }: { messages: MessageRow[] }) {
                 <div>
                   <dt className="text-ink-2">Phone</dt>
                   <dd>
-                    <a href={`tel:${open.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-1.5 font-medium text-brand">
+                    <a href={`tel:${open.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-1.5 font-medium text-brand-text">
                       <Phone aria-hidden className="size-3.5" />
                       {open.phone}
                     </a>

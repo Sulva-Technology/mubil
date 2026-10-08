@@ -3,7 +3,7 @@
 import Image from "@/components/ui/Img";
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryItem } from "@/content";
 import { EASE } from "@/lib/motion";
@@ -126,7 +126,7 @@ export default function Lightbox({ items, index, onIndexChange, onClose }: Props
   const slide = reduce ? 0 : 60;
 
   return createPortal(
-    <motion.div
+    <m.div
       ref={dialogRef}
       role="dialog"
       aria-modal="true"
@@ -147,7 +147,7 @@ export default function Lightbox({ items, index, onIndexChange, onClose }: Props
         onPointerCancel={onPointerUp}
       >
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
-          <motion.figure
+          <m.figure
             key={item.src}
             custom={direction}
             initial={{ opacity: 0, x: direction * slide }}
@@ -162,7 +162,7 @@ export default function Lightbox({ items, index, onIndexChange, onClose }: Props
             >
               <Image src={item.src} alt={item.alt} fill sizes="100vw" className="select-none object-contain" draggable={false} priority />
             </div>
-          </motion.figure>
+          </m.figure>
         </AnimatePresence>
       </div>
 
@@ -186,7 +186,7 @@ export default function Lightbox({ items, index, onIndexChange, onClose }: Props
           </button>
         </div>
       </div>
-    </motion.div>,
+    </m.div>,
     document.body,
   );
 }

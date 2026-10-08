@@ -5,7 +5,7 @@ import { mkdir } from "node:fs/promises";
 
 const base = process.argv[2] ?? "http://localhost:3000";
 const routes = process.argv.slice(3).length ? process.argv.slice(3) : ["/styleguide"];
-const widths = [360, 1280];
+const widths = (process.env.WIDTHS ?? "360,1280").split(",").map(Number);
 
 await mkdir("screenshots", { recursive: true });
 const browser = await chromium.launch();

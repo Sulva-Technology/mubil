@@ -3,7 +3,7 @@
 import Image from "@/components/ui/Img";
 import Link from "next/link";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { ArrowUpRight, FolderOpen } from "lucide-react";
 import type { Programme, ProgrammeStatus } from "@/content";
 import { cn } from "@/lib/cn";
@@ -63,7 +63,7 @@ export function ProgrammesGrid({ items }: { items: Programme[] }) {
         <ul className="mt-10 grid auto-rows-[minmax(260px,auto)] gap-5 md:grid-cols-6 md:auto-rows-[300px]">
           <AnimatePresence initial={false} mode="popLayout">
             {visible.map((programme, i) => (
-              <motion.li
+              <m.li
                 key={programme.slug}
                 layout
                 initial={{ opacity: 0, scale: 0.97 }}
@@ -92,12 +92,12 @@ export function ProgrammesGrid({ items }: { items: Programme[] }) {
                       </h2>
                       <p className="mt-2 max-w-[44ch] text-small text-white/85 md:text-body">{programme.summary}</p>
                     </div>
-                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-brand transition-transform duration-500 ease-soft group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-brand-text transition-transform duration-500 ease-soft group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                       <ArrowUpRight aria-hidden className="size-5" strokeWidth={2} />
                     </span>
                   </div>
                 </Link>
-              </motion.li>
+              </m.li>
             ))}
           </AnimatePresence>
         </ul>

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { AlertCircle, CheckCircle2, Info, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { EASE } from "@/lib/motion";
@@ -13,7 +13,7 @@ type ToastApi = { toast: (message: string, tone?: ToastTone) => void };
 const ToastContext = createContext<ToastApi | null>(null);
 
 const icons = { success: CheckCircle2, error: AlertCircle, info: Info } as const;
-const iconColor = { success: "text-success", error: "text-error", info: "text-brand" } as const;
+const iconColor = { success: "text-success", error: "text-error", info: "text-brand-text" } as const;
 
 /** Wrap the app once. Use `useToast()` anywhere below it. */
 export function ToastProvider({ children }: { children: ReactNode }) {
@@ -47,7 +47,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
           {items.map((item) => {
             const Icon = icons[item.tone];
             return (
-              <motion.div
+              <m.div
                 key={item.id}
                 layout={!reduce}
                 initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.96, filter: "blur(6px)" }}
@@ -67,7 +67,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                 >
                   <X aria-hidden className="size-4" />
                 </button>
-              </motion.div>
+              </m.div>
             );
           })}
         </AnimatePresence>

@@ -49,7 +49,7 @@ export function ModalDemo() {
     <>
       <Button onClick={() => setOpen(true)}>Open modal</Button>
       <Modal open={open} onClose={() => setOpen(false)} title="[TEAM MEMBER NAME]">
-        <p className="text-small font-medium text-brand">[ROLE]</p>
+        <p className="text-small font-medium text-brand-text">[ROLE]</p>
         <p className="mt-4 text-ink-2">
           [SHORT BIO]. Press Escape, click outside, or use the close button to dismiss. Focus stays inside while open
           and returns to the trigger afterwards.

@@ -23,14 +23,17 @@ export function PostCard({
   post,
   className,
   horizontal = false,
+  headingLevel = "h3",
   sizes = "(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw",
 }: {
   post: PostSummary;
   className?: string;
+  headingLevel?: "h2" | "h3";
   /** Image beside the text on large screens. */
   horizontal?: boolean;
   sizes?: string;
 }) {
+  const Heading = headingLevel;
   return (
     <article
       className={cn(
@@ -51,11 +54,11 @@ export function PostCard({
         {post.category && <Chip>{post.category}</Chip>}
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-display text-[1.25rem] font-semibold leading-snug tracking-[-0.02em]">
+        <Heading className="font-display text-[1.25rem] font-semibold leading-snug tracking-[-0.02em]">
           <Link href={`/news/${post.slug}`} className="after:absolute after:inset-0">
             {post.title}
           </Link>
-        </h3>
+        </Heading>
         {post.excerpt && <p className="mt-2 line-clamp-2 text-small text-ink-2">{post.excerpt}</p>}
         <p className="mt-auto pt-5 text-small text-ink-2">
           <time dateTime={post.publish_date}>{formatDate(post.publish_date)}</time>
@@ -66,7 +69,18 @@ export function PostCard({
 }
 
 /** Large featured post: full image with a glass panel. */
-export function FeaturedPostCard({ post, className, priority = false }: { post: PostSummary; className?: string; priority?: boolean }) {
+export function FeaturedPostCard({
+  post,
+  className,
+  priority = false,
+  headingLevel = "h3",
+}: {
+  post: PostSummary;
+  className?: string;
+  priority?: boolean;
+  headingLevel?: "h2" | "h3";
+}) {
+  const Heading = headingLevel;
   return (
     <article
       className={cn(
@@ -89,11 +103,11 @@ export function FeaturedPostCard({ post, className, priority = false }: { post: 
           {post.category && <span className="rounded-chip bg-ice px-2.5 py-1 font-medium text-brand-deep">{post.category}</span>}
           <time dateTime={post.publish_date}>{formatDate(post.publish_date)}</time>
         </p>
-        <h3 className="mt-3 max-w-[28ch] font-display text-h3 font-semibold text-ink">
+        <Heading className="mt-3 max-w-[28ch] font-display text-h3 font-semibold text-ink">
           <Link href={`/news/${post.slug}`} className="after:absolute after:inset-0 after:rounded-panel">
             {post.title}
           </Link>
-        </h3>
+        </Heading>
         {post.excerpt && <p className="mt-2 line-clamp-2 max-w-[60ch] text-ink-2">{post.excerpt}</p>}
       </Glass>
     </article>

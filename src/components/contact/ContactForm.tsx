@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState, type ChangeEvent, type FocusEvent } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
 import { submitContact } from "@/app/(site)/contact/actions";
 import {
@@ -64,7 +64,7 @@ function Field({ name, label, type = "text", autoComplete, optional, multiline, 
           htmlFor={id}
           className={cn(
             "pointer-events-none absolute left-4 top-4 origin-left text-body text-ink-2 transition-all duration-300 ease-soft",
-            "peer-focus:top-2 peer-focus:text-[0.75rem] peer-focus:text-brand",
+            "peer-focus:top-2 peer-focus:text-[0.75rem] peer-focus:text-brand-text",
             "peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-[0.75rem]",
           )}
         >
@@ -168,7 +168,7 @@ export function ContactForm() {
             {state.status === "error" && !pending && <p className="text-error">{state.message}</p>}
             {success && <p className="font-medium text-success">Message sent. We&apos;ll reply within two working days.</p>}
           </div>
-          <motion.button
+          <m.button
             type="submit"
             disabled={pending}
             layout
@@ -182,20 +182,20 @@ export function ContactForm() {
           >
             <AnimatePresence mode="wait" initial={false}>
               {pending ? (
-                <motion.span key="pending" initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.6 }}>
+                <m.span key="pending" initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.6 }}>
                   <Loader2 aria-hidden className="size-5 animate-spin" />
-                </motion.span>
+                </m.span>
               ) : success ? (
-                <motion.span key="done" initial={{ opacity: 0, scale: 0.4 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4, ease: EASE }}>
+                <m.span key="done" initial={{ opacity: 0, scale: 0.4 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4, ease: EASE }}>
                   <Check aria-hidden className="size-5" strokeWidth={2.5} />
-                </motion.span>
+                </m.span>
               ) : (
-                <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                <m.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                   Send message
-                </motion.span>
+                </m.span>
               )}
             </AnimatePresence>
-          </motion.button>
+          </m.button>
         </div>
       </form>
     </Glass>

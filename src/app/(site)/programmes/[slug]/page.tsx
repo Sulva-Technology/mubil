@@ -111,7 +111,7 @@ export default async function ProgrammePage({ params }: Props) {
               <RevealItem>
                 <div className="rounded-card border border-line bg-surface p-6">
                   <h3 className="flex items-center gap-2 font-medium">
-                    <Users aria-hidden className="size-5 text-brand" strokeWidth={1.75} />
+                    <Users aria-hidden className="size-5 text-brand-text" strokeWidth={1.75} />
                     Who it serves
                   </h3>
                   <p className="mt-2 text-ink-2">{programme.serves}</p>
@@ -120,7 +120,7 @@ export default async function ProgrammePage({ params }: Props) {
               <RevealItem>
                 <div className="rounded-card border border-line bg-surface p-6">
                   <h3 className="flex items-center gap-2 font-medium">
-                    <MapPin aria-hidden className="size-5 text-brand" strokeWidth={1.75} />
+                    <MapPin aria-hidden className="size-5 text-brand-text" strokeWidth={1.75} />
                     Where it runs
                   </h3>
                   <ul className="mt-3 flex flex-wrap gap-2">
@@ -157,7 +157,11 @@ export default async function ProgrammePage({ params }: Props) {
           <h2 id="gallery-title" className="text-h2 font-semibold">
             From the field
           </h2>
-          <div className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden">
+          <div
+            tabIndex={0}
+            role="region"
+            aria-label="Programme photos, scroll sideways for more"
+            className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden">
             {programme.photos.map((photo, i) => (
               <div
                 key={photo.src}

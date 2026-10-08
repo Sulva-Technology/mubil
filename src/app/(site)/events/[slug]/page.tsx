@@ -130,19 +130,19 @@ export default async function EventPage({ params }: Props) {
             <aside className="lg:order-2 lg:col-span-4">
               <Glass variant="strong" className="rounded-panel p-6 lg:sticky lg:top-28 lg:p-8">
                 <h2 className="sr-only">Event details</h2>
-                <dl className="space-y-5">
+                <ul className="space-y-5">
                   {details.map(({ icon: Icon, label, value }) => (
-                    <div key={label} className="flex gap-4">
-                      <span className="grid size-10 shrink-0 place-items-center rounded-full bg-ice text-brand">
-                        <Icon aria-hidden className="size-5" strokeWidth={1.75} />
+                    <li key={label} className="flex gap-4">
+                      <span aria-hidden className="grid size-10 shrink-0 place-items-center rounded-full bg-ice text-brand-text">
+                        <Icon className="size-5" strokeWidth={1.75} />
                       </span>
-                      <div>
-                        <dt className="text-small text-ink-2">{label}</dt>
-                        <dd className="font-medium">{value}</dd>
-                      </div>
-                    </div>
+                      <p>
+                        <span className="block text-small text-ink-2">{label}</span>
+                        <span className="font-medium">{value}</span>
+                      </p>
+                    </li>
                   ))}
-                </dl>
+                </ul>
                 <div className="mt-8 flex flex-col gap-3">
                   <a href={`/events/${event.slug}/calendar`} download={`${event.slug}.ics`} className={buttonClasses("primary", "md", "w-full")}>
                     <CalendarPlus aria-hidden className="size-4" />

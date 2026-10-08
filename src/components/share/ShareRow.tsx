@@ -14,7 +14,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 const itemClass =
-  "grid size-11 place-items-center rounded-full border border-line bg-surface text-ink-2 transition-[color,transform,box-shadow] duration-500 ease-soft hover:-translate-y-0.5 hover:text-brand hover:shadow-card";
+  "grid size-11 place-items-center rounded-full border border-line bg-surface text-ink-2 transition-[color,transform,box-shadow] duration-500 ease-soft hover:-translate-y-0.5 hover:text-brand-text hover:shadow-card";
 
 /** WhatsApp, X, Facebook and copy link. */
 export function ShareRow({ url, title }: { url: string; title: string }) {

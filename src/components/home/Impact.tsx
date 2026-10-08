@@ -6,7 +6,7 @@ import { CountUp } from "./CountUp";
 export function Impact() {
   const { impact } = home;
   return (
-    <Section tone="night" ambient aria-labelledby="impact-title">
+    <Section tone="night" ambient deferRender aria-labelledby="impact-title">
       <Eyebrow tone="dark" className="mb-4">
         {impact.eyebrow}
       </Eyebrow>

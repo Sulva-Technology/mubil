@@ -49,7 +49,7 @@ export function ProgrammesHeading() {
 export async function UpcomingEvents() {
   const events = await getUpcomingEvents(3);
   return (
-    <Section aria-labelledby="events-title">
+    <Section deferRender aria-labelledby="events-title">
       <SectionHeading
         id="events-title"
         eyebrow={home.events.eyebrow}
@@ -101,7 +101,7 @@ export async function LatestNews() {
   const posts = await getLatestPosts(3);
   const [featured, ...rest] = posts;
   return (
-    <Section tone="surface" aria-labelledby="news-title">
+    <Section tone="surface" deferRender aria-labelledby="news-title">
       <SectionHeading
         id="news-title"
         eyebrow={home.news.eyebrow}
@@ -148,7 +148,7 @@ export function LatestNewsSkeleton() {
 export function Story() {
   const { story } = home;
   return (
-    <section aria-label="A story from our programmes" className="relative min-h-[720px] overflow-hidden bg-brand-deep md:min-h-[85vh]">
+    <section aria-label="A story from our programmes" className="cv-auto relative min-h-[720px] overflow-hidden bg-brand-deep md:min-h-[85vh]">
       <Image src={story.image} alt={story.imageAlt} fill sizes="100vw" className="object-cover object-[50%_25%] md:object-[30%_25%]" />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent md:bg-gradient-to-l md:from-night/40" />
       <div className="container-page relative flex min-h-[720px] items-end py-6 md:min-h-[85vh] md:items-center md:justify-end md:py-24">
@@ -171,7 +171,7 @@ export function Story() {
 export function ClosingCta() {
   const { cta } = home;
   return (
-    <section aria-labelledby="cta-title" className="section-y relative overflow-hidden bg-bg">
+    <section aria-labelledby="cta-title" className="cv-auto section-y relative overflow-hidden bg-bg">
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 h-[480px] w-[min(900px,120vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--brand)_22%,transparent),color-mix(in_srgb,var(--aqua)_10%,transparent)_60%,transparent)]"

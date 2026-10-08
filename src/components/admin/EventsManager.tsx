@@ -196,7 +196,7 @@ export function EventsManager({ events }: { events: EventRow[] }) {
                           {event.cover_image_url && <Image src={event.cover_image_url} alt="" fill sizes="48px" className="object-cover" />}
                         </div>
                         <div className="min-w-0">
-                          <button type="button" onClick={() => setParam("edit", event.id)} className="block max-w-[38ch] truncate text-left font-medium hover:text-brand">
+                          <button type="button" onClick={() => setParam("edit", event.id)} className="block max-w-[38ch] truncate text-left font-medium hover:text-brand-text">
                             {event.title}
                           </button>
                           <p className="flex items-center gap-1.5 truncate text-[0.8125rem] text-ink-2">

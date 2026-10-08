@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 import { DURATION, EASE, STAGGER } from "@/lib/motion";
 
 const item: Variants = {
@@ -22,7 +22,7 @@ const group: Variants = {
  */
 export function Reveal({ children, className, stagger = false }: { children: ReactNode; className?: string; stagger?: boolean }) {
   return (
-    <motion.div
+    <m.div
       data-reveal
       className={className}
       initial="hidden"
@@ -31,14 +31,14 @@ export function Reveal({ children, className, stagger = false }: { children: Rea
       variants={stagger ? group : item}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
 export function RevealItem({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <motion.div data-reveal className={className} variants={item}>
+    <m.div data-reveal className={className} variants={item}>
       {children}
-    </motion.div>
+    </m.div>
   );
 }

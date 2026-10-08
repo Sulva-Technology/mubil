@@ -26,15 +26,16 @@ You are a senior product designer and full-stack engineer with Apple and Google 
 - Google: generous whitespace, strict grid, clear hierarchy, friendly rounded geometry, zero clutter. Every element earns its place.
 - Rule: glass is used ONLY on floating layers (navbar, cards over imagery, modals, side panels, tooltips, stat pills, admin sidebar). Body content sits on solid surfaces for readability.
 
-## Colour tokens (CSS variables in globals.css, mapped in tailwind.config. Every colour must come from these so the brand can be swapped later)
+## Colour tokens (CSS variables in globals.css, mapped to Tailwind v4 in its `@theme inline` block; Tailwind's default palette is removed. Every colour must come from these so the brand can be swapped later)
 
 - --bg: #F5F7FB (page canvas)
 - --surface: #FFFFFF (cards, solid panels)
 - --ink: #0B1B33 (primary text, deep navy)
-- --ink-2: #5B6B82 (secondary text)
+- --ink-2: #44536A (secondary text; darkened from #5B6B82 so it passes WCAG AA over the ambient blob tints)
 - --line: rgba(11,27,51,0.08) (dividers, borders)
 - --brand: #1F5EFF (primary buttons, links, active states, focus rings)
 - --brand-deep: #0A2A6B (hover, pressed, dark gradients)
+- --brand-text: 60% --brand + 40% --brand-deep (brand-coloured small text and links, passes AA; use `text-brand-text`)
 - --sky: #6FB8FF (ambient glow and decoration only, never text)
 - --aqua: #19C3D9 (accent highlights, max one or two per screen)
 - --ice: #E6F0FF (chips, tags, soft background bands)

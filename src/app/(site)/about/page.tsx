@@ -63,7 +63,7 @@ export default function AboutPage() {
               return (
                 <RevealItem key={pillar.title}>
                   <Glass variant="regular" className="h-full rounded-panel p-8 md:p-10">
-                    <span className="grid size-12 place-items-center rounded-full bg-white text-brand shadow-card">
+                    <span className="grid size-12 place-items-center rounded-full bg-white text-brand-text shadow-card">
                       <Icon aria-hidden className="size-6" strokeWidth={1.75} />
                     </span>
                     <h3 className="mt-8 text-h3 font-semibold">{pillar.title}</h3>

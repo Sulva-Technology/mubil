@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { CalendarDays, CircleHelp, ExternalLink, Inbox, LayoutGrid, LogOut, Newspaper, Search } from "lucide-react";
 import { signOut } from "@/app/admin/actions";
 import { cn } from "@/lib/cn";
@@ -123,7 +123,7 @@ export function AdminShell({
                     )}
                   >
                     {active && (
-                      <motion.span
+                      <m.span
                         layoutId="admin-nav-active"
                         className="absolute inset-0 rounded-full bg-white shadow-card"
                         transition={reduce ? { duration: 0 } : { duration: 0.5, ease: EASE }}
@@ -204,7 +204,7 @@ export function AdminShell({
                   )}
                 >
                   {active && (
-                    <motion.span
+                    <m.span
                       layoutId="admin-tab-active"
                       className="absolute inset-0 rounded-full bg-white shadow-card"
                       transition={reduce ? { duration: 0 } : { duration: 0.5, ease: EASE }}

@@ -14,7 +14,7 @@ const contactRows = [
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden bg-night text-white">
+    <footer className="cv-auto relative overflow-hidden bg-night text-white">
       <AmbientBackground tone="night" className="opacity-70" />
       <div className="container-page relative z-10 pb-10 pt-24 md:pt-32">
         <div className="grid gap-14 lg:grid-cols-12">

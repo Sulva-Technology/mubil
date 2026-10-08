@@ -9,7 +9,20 @@ import { Glass } from "@/components/ui/Glass";
 const FALLBACK = "/placeholders/landscape.svg";
 
 /** Image card with a glass date badge in the corner. */
-export function EventCard({ event, className, past = false }: { event: EventSummary; className?: string; past?: boolean }) {
+export function EventCard({
+  event,
+  className,
+  past = false,
+  priority = false,
+  headingLevel = "h3",
+}: {
+  event: EventSummary;
+  className?: string;
+  past?: boolean;
+  priority?: boolean;
+  headingLevel?: "h2" | "h3";
+}) {
+  const Heading = headingLevel;
   const { day, month } = dateParts(event.event_date);
   const time = formatTimeRange(event.start_time, event.end_time);
   return (
@@ -26,6 +39,7 @@ export function EventCard({ event, className, past = false }: { event: EventSumm
           fill
           sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
           unoptimized={!event.cover_image_url}
+          priority={priority}
           className={cn(
             "object-cover transition-transform duration-700 ease-soft group-hover:scale-[1.04]",
             past && "grayscale-[35%]",
@@ -36,15 +50,15 @@ export function EventCard({ event, className, past = false }: { event: EventSumm
           className="absolute left-4 top-4 flex flex-col items-center rounded-chip px-3 py-2 leading-none text-ink"
         >
           <span className="font-display text-[1.5rem] font-semibold tracking-[-0.03em] tabular-nums">{day}</span>
-          <span className="mt-1 text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-brand">{month}</span>
+          <span className="mt-1 text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-brand-text">{month}</span>
         </Glass>
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-display text-[1.25rem] font-semibold leading-snug tracking-[-0.02em]">
+        <Heading className="font-display text-[1.25rem] font-semibold leading-snug tracking-[-0.02em]">
           <Link href={`/events/${event.slug}`} className="after:absolute after:inset-0">
             {event.title}
           </Link>
-        </h3>
+        </Heading>
         <div className="mt-auto space-y-1.5 pt-4 text-small text-ink-2">
           {time && (
             <p className="flex items-center gap-2">

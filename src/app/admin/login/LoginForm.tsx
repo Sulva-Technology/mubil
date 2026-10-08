@@ -64,7 +64,7 @@ export function LoginForm() {
             <label htmlFor="password" className="block text-small font-medium">
               Password
             </label>
-            <button type="button" onClick={() => setMode("forgot")} className="rounded text-small font-medium text-brand hover:text-brand-deep">
+            <button type="button" onClick={() => setMode("forgot")} className="rounded text-small font-medium text-brand-text hover:text-brand-deep">
               Forgot password?
             </button>
           </div>

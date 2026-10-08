@@ -30,9 +30,9 @@ async function EventLists() {
       upcoming={
         upcoming.length ? (
           <ul className={grid}>
-            {upcoming.map((event) => (
+            {upcoming.map((event, i) => (
               <li key={event.id} className="flex">
-                <EventCard event={event} className="w-full" />
+                <EventCard event={event} className="w-full" headingLevel="h2" priority={i === 0} />
               </li>
             ))}
           </ul>
@@ -54,7 +54,7 @@ async function EventLists() {
           <ul className={grid}>
             {past.map((event) => (
               <li key={event.id} className="flex">
-                <EventCard event={event} past className="w-full" />
+                <EventCard event={event} past className="w-full" headingLevel="h2" />
               </li>
             ))}
           </ul>

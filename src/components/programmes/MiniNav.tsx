@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { EASE } from "@/lib/motion";
 
@@ -41,7 +41,7 @@ export function MiniNav({ items }: { items: ReadonlyArray<Item> }) {
                 )}
               >
                 {isActive && (
-                  <motion.span
+                  <m.span
                     layoutId="mini-nav-active"
                     className="absolute inset-0 rounded-full bg-brand"
                     transition={reduce ? { duration: 0 } : { duration: 0.5, ease: EASE }}

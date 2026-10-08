@@ -20,6 +20,8 @@ type SectionProps = {
   contained?: boolean;
   className?: string;
   containerClassName?: string;
+  /** Below-the-fold section: let the browser skip rendering it until it's close. */
+  deferRender?: boolean;
   "aria-labelledby"?: string;
   children: ReactNode;
 };
@@ -31,13 +33,14 @@ export function Section({
   contained = true,
   className,
   containerClassName,
+  deferRender = false,
   children,
   ...rest
 }: SectionProps) {
   return (
     <section
       id={id}
-      className={cn("section-y relative overflow-hidden", toneClass[tone], className)}
+      className={cn("section-y relative overflow-hidden", toneClass[tone], deferRender && "cv-auto", className)}
       {...rest}
     >
       {ambient && <AmbientBackground tone={tone === "night" ? "night" : "light"} />}

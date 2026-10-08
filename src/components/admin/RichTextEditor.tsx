@@ -94,7 +94,7 @@ export default function RichTextEditor({ id, value, onChange, placeholder = "Sta
             aria-label={label}
             aria-pressed={!!active}
             title={label}
-            className={cn("grid size-9 place-items-center rounded-lg text-ink-2 hover:bg-white hover:text-ink", active && "bg-white text-brand shadow-card")}
+            className={cn("grid size-9 place-items-center rounded-lg text-ink-2 hover:bg-white hover:text-ink", active && "bg-white text-brand-text shadow-card")}
           >
             <Icon aria-hidden className="size-4" />
           </button>

@@ -8,10 +8,12 @@
   --bg: #f5f7fb;
   --surface: #ffffff;
   --ink: #0b1b33;
-  --ink-2: #5b6b82;
+  --ink-2: #44536a;
   --line: rgba(11, 27, 51, 0.08);
   --brand: #1f5eff;
   --brand-deep: #0a2a6b;
+  /* Brand blue for small text: passes WCAG AA on the page canvas and ambient tints */
+  --brand-text: color-mix(in srgb, var(--brand) 60%, var(--brand-deep));
   --sky: #6fb8ff;
   --aqua: #19c3d9;
   --ice: #e6f0ff;
@@ -35,6 +37,7 @@
   --color-line: var(--line);
   --color-brand: var(--brand);
   --color-brand-deep: var(--brand-deep);
+  --color-brand-text: var(--brand-text);
   --color-sky: var(--sky);
   --color-aqua: var(--aqua);
   --color-ice: var(--ice);
@@ -105,10 +108,6 @@
     text-wrap: balance;
   }
 
-  p {
-    text-wrap: pretty;
-  }
-
   ::selection {
     background: color-mix(in srgb, var(--brand) 22%, transparent);
   }
@@ -136,6 +135,12 @@
 @utility section-y {
   /* 64px at 360px, ~96px tablet, 120-160px desktop */
   padding-block: clamp(4rem, 2.5rem + 6vw, 10rem);
+}
+
+/* Skip style, layout and paint for off-screen sections until they near the viewport. */
+@utility cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 
 @utility measure {
@@ -261,7 +266,7 @@
   }
 
   .prose-mubil a {
-    color: var(--brand);
+    color: var(--brand-text);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
@@ -374,6 +379,33 @@
   }
   100% {
     transform: translate3d(calc(var(--blob-dx, 6%) * -0.6), calc(var(--blob-dy, -4%) * -1), 0) scale(0.96);
+  }
+}
+
+/* Hero entrance: pure CSS so it plays on first paint, before any JavaScript. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    filter: blur(var(--rise-blur));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.rise-in {
+  /* Blur-to-sharp costs paint time, so small screens rise without it. */
+  --rise-blur: 0px;
+  animation: rise-in 0.7s var(--ease-soft) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+@media (width >= 48rem) {
+  .rise-in {
+    --rise-blur: 8px;
   }
 }
 

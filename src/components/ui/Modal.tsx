@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { EASE } from "@/lib/motion";
@@ -75,7 +75,7 @@ export function Modal({ open, onClose, title, hideTitle = false, children, class
     <AnimatePresence>
       {open && (
         <div className="fixed inset-0 z-[90] flex items-end justify-center p-4 sm:items-center">
-          <motion.div
+          <m.div
             aria-hidden
             className="absolute inset-0 bg-night/45 backdrop-blur-sm"
             initial={{ opacity: 0 }}
@@ -84,7 +84,7 @@ export function Modal({ open, onClose, title, hideTitle = false, children, class
             transition={{ duration: 0.4, ease: EASE }}
             onClick={onClose}
           />
-          <motion.div
+          <m.div
             ref={panelRef}
             role="dialog"
             aria-modal="true"
@@ -113,7 +113,7 @@ export function Modal({ open, onClose, title, hideTitle = false, children, class
               </button>
             </div>
             {children}
-          </motion.div>
+          </m.div>
         </div>
       )}
     </AnimatePresence>,

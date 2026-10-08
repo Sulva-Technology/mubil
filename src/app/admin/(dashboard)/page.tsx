@@ -97,7 +97,7 @@ export default async function OverviewPage() {
               data-tour={tour}
               className="group block rounded-card border border-line bg-surface p-5 shadow-card transition-[transform,box-shadow] duration-500 ease-soft hover:-translate-y-0.5 hover:shadow-lift md:p-6"
             >
-              <span className="grid size-10 place-items-center rounded-full bg-ice text-brand">
+              <span className="grid size-10 place-items-center rounded-full bg-ice text-brand-text">
                 <Icon aria-hidden className="size-5" strokeWidth={1.75} />
               </span>
               <p className="mt-5 font-display text-[2.25rem] font-semibold leading-none tracking-[-0.03em] tabular-nums">{value}</p>
@@ -123,7 +123,7 @@ export default async function OverviewPage() {
                     <span
                       className={cn(
                         "grid size-9 shrink-0 place-items-center rounded-full",
-                        a.kind === "message" ? "bg-[color-mix(in_srgb,var(--aqua)_15%,transparent)] text-brand-deep" : "bg-ice text-brand",
+                        a.kind === "message" ? "bg-[color-mix(in_srgb,var(--aqua)_15%,transparent)] text-brand-deep" : "bg-ice text-brand-text",
                       )}
                     >
                       <Icon aria-hidden className="size-4" strokeWidth={1.75} />

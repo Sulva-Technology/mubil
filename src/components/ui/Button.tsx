@@ -14,7 +14,7 @@ const base =
 const variants: Record<ButtonVariant, string> = {
   primary: "rounded-full bg-brand text-white hover:bg-brand-deep hover:shadow-glow",
   secondary: "glass rounded-full text-ink hover:bg-white/70",
-  tertiary: "rounded-full text-brand hover:text-brand-deep",
+  tertiary: "rounded-full text-brand-text hover:text-brand-deep",
 };
 
 const sizes: Record<ButtonSize, string> = {

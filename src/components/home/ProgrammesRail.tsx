@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { programmes } from "@/content";
 import { ProgrammeCard } from "@/components/programmes/ProgrammeCard";
 
@@ -49,7 +49,7 @@ export function ProgrammesRail({ header }: { header: ReactNode }) {
     >
       <div className={pinned ? "sticky top-0 flex h-screen flex-col justify-center overflow-hidden" : "section-y"}>
         <div className="container-page">{header}</div>
-        <motion.div
+        <m.div
           ref={trackRef}
           style={pinned ? { x } : undefined}
           className={
@@ -69,7 +69,7 @@ export function ProgrammesRail({ header }: { header: ReactNode }) {
               }
             />
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

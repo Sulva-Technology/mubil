@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useRef, type KeyboardEvent } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { EASE } from "@/lib/motion";
 
@@ -66,7 +66,7 @@ export function SegmentedControl<T extends string>({
             )}
           >
             {selected && (
-              <motion.span
+              <m.span
                 layoutId={`segment-${id}`}
                 className="glass glass-strong absolute inset-0 rounded-full"
                 transition={reduce ? { duration: 0 } : { duration: 0.5, ease: EASE }}

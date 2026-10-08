@@ -65,7 +65,7 @@ export default async function NewsPage({ searchParams }: Props) {
           />
         ) : (
           <>
-            {featured && <FeaturedPostCard post={featured} priority className="min-h-[480px] md:min-h-[620px]" />}
+            {featured && <FeaturedPostCard post={featured} priority headingLevel="h2" className="min-h-[480px] md:min-h-[620px]" />}
 
             {categories.length > 0 && (
               <nav aria-label="Filter by category" className={featured ? "mt-14" : ""}>
@@ -97,7 +97,7 @@ export default async function NewsPage({ searchParams }: Props) {
                 {rest.map((post) =>
                   post ? (
                     <li key={post.id} className="flex">
-                      <PostCard post={post} className="w-full" />
+                      <PostCard post={post} className="w-full" headingLevel="h2" />
                     </li>
                   ) : null,
                 )}

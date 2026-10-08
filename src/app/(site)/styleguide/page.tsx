@@ -52,7 +52,7 @@ const typeScale = [
       "Body copy keeps a 65 character measure so long paragraphs stay easy to read on any screen, from a 360px phone to a wide desktop.",
   },
   { name: "Small", spec: "14px, Inter 400", className: "text-small text-ink-2", sample: "Saturday 14 March, 10:00 to 14:00" },
-  { name: "Eyebrow", spec: "13px, uppercase, 0.08em", className: "text-eyebrow font-semibold uppercase text-brand", sample: "Upcoming events" },
+  { name: "Eyebrow", spec: "13px, uppercase, 0.08em", className: "text-eyebrow font-semibold uppercase text-brand-text", sample: "Upcoming events" },
 ];
 
 const glassVariants: GlassVariant[] = ["subtle", "regular", "strong", "dark"];
