@@ -1,6 +1,6 @@
-/** Browser-side image prep: resize to max 1600px wide and encode as WebP under 2 MB. */
+/** Browser-side image prep: resize to max 1600px wide and encode as WebP under 5 MB. */
 export const MAX_WIDTH = 1600;
-export const MAX_BYTES = 2 * 1024 * 1024;
+export const MAX_BYTES = 5 * 1024 * 1024;
 
 function loadImage(file: File): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {

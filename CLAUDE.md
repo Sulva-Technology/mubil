@@ -97,7 +97,7 @@ Ambient background: 3 slow drifting gradient blobs behind glass areas: --brand a
 ## Storage
 
 - Public bucket "media" with folders events/ and posts/. Public read, admin-only write (storage policies using is_admin()).
-- Compress in the browser before upload: max 1600px wide, WebP, max 2 MB.
+- Compress in the browser before upload: max 1600px wide, WebP, max 5 MB.
 
 ## Rendering
 
